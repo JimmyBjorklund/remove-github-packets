@@ -1,0 +1,7 @@
+{
+   "token": "",
+   "ORG": "githuborg",
+   "removeUntagged": true,
+   "keepVersions": true,
+   "removeOlderItems": true
+}
