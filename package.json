@@ -4,7 +4,7 @@
   "description": "Delete github packets from repos",
   "main": "app/index.ts",
   "scripts": {
-    "start": "ts-node app/app.ts",
+    "start": "ts-node app/index.ts",
     "watch": "nodemon"
   },
   "author": "jimmy@precisiontech.se",

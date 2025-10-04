@@ -46,12 +46,16 @@ const github = new GitHubService(token, ORG);
 const del = async(packet:string) => {  
   let packets = await github.getPacketVersions(packet, 10000);
   if( removeUntagged ) {
-    const untagged = packets.filter( f => { return f.metadata.container?.tags.length === 0 })    
+    const untagged = packets.filter( f => { return f.metadata.container?.tags.length === 0 });
+    packets = packets.filter( f => { return f.metadata.container?.tags.length !== 0 }); 
+    if( packets.length === 0 ) {
+      console.log(`Can not remove untaged as there is no tagged version ${packet}`);
+      return;
+    }
     for( const p of untagged) {
       await github.deletePacketVersion(packet, p.id);
       console.log(`Deleted untagged version ${packet} ${p.name}`)
     }
-    packets = packets.filter( f => { return f.metadata.container?.tags.length !== 0 });
   }
   if( removeOlderItems ) {
     if ( packets.find( o => { return o.metadata.container?.tags.find( o2 => { return o2.startsWith("v")})}) === undefined ) {
@@ -72,7 +76,9 @@ const start = async() => {
   const packets = await github.getPackets(1000);  
   for( const p of packets ) {
     console.log(`Scanning ${p.name}`);
-    await del(p.name);
+    if ( p.name.startsWith("netmore") ) {
+      await del(p.name);
+    }    
   }
 }
 //del(p);
