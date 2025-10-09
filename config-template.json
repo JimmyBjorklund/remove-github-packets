@@ -1,7 +1,8 @@
 {
    "token": "",
-   "ORG": "githuborg",
+   "ORG": "akme",
+   "prefix": "akme-",
    "removeUntagged": true,
    "keepVersions": true,
-   "removeOlderItems": true
+   "removeOlderItems": false
 }

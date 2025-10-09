@@ -1,3 +1,10 @@
+/**
+ * Shared type definitions for GitHub Packages
+ */
+
+/**
+ * Enumeration of supported GitHub package types
+ */
 export enum PacketType {
   npm = "npm",
   maven = "maven",
